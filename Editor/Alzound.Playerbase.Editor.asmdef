@@ -1,0 +1,10 @@
+{
+    "name": "Alzound.Playerbase.Editor",
+    "references": [
+      "Alzound.Playerbase"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}

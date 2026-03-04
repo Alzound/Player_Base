@@ -1,0 +1,11 @@
+{
+    "name": "Alzound.Playerbase.Tests",
+    "references": [
+        "Alzound.Playerbase"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": []
+}

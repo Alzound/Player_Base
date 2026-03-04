@@ -1,0 +1,14 @@
+{
+    "name": "Alzound.Playerbase.Editor.Tests",
+    "references": [
+        "Alzound.Playerbase.Editor",
+        "Alzound.Playerbase"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}
