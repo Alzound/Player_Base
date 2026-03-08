@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 413093906980613970}
-  - component: {fileID: 7766810183994257087}
-  - component: {fileID: 2263642131430945158}
+  - component: {fileID: 1706292858061254539}
+  - component: {fileID: 6978527177873630892}
   m_Layer: 0
   m_Name: CameraLook
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8849017084895655066}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7766810183994257087
+--- !u!114 &1706292858061254539
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,14 +42,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1339574712042785322}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48d02341eb396474bb35de6d6f3311ac, type: 3}
+  m_Script: {fileID: 11500000, guid: 990c441dbc445514c902a025aad25de4, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Camera_Controller
-  inputSource: {fileID: 2263642131430945158}
-  playerBody: {fileID: 8849017084895655066}
+  m_EditorClassIdentifier: Alzound.lvlPlayer::LvlPlayer.Camera_Controller
+  inputSource: {fileID: 0}
+  playerBody: {fileID: 0}
   lookSensitivity: 200
   pitchLimits: {x: -60, y: 75}
---- !u!114 &2263642131430945158
+--- !u!114 &6978527177873630892
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -58,9 +58,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1339574712042785322}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4359f9a8d8d9eb4490fa144c547e5f0, type: 3}
+  m_Script: {fileID: 11500000, guid: 493058950b270c140857649c0bc2a2c4, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerInputsystemAdapter
+  m_EditorClassIdentifier: Alzound.lvlPlayer::LvlPlayer.PlayerInputsystemAdapter
 --- !u!1 &6296457867245844372
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,10 +185,10 @@ GameObject:
   - component: {fileID: 4612020492577654575}
   - component: {fileID: 6781326662919689814}
   - component: {fileID: 612391605046200436}
-  - component: {fileID: 3238765284559147059}
-  - component: {fileID: 3224151848251582093}
   - component: {fileID: 3388720958398457946}
-  - component: {fileID: 4020568885726553699}
+  - component: {fileID: 5313774353161766288}
+  - component: {fileID: 5736452361298927344}
+  - component: {fileID: 2965021713616497275}
   m_Layer: 0
   m_Name: Pigmeon
   m_TagString: Untagged
@@ -293,35 +293,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3238765284559147059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6490208958335445775}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4359f9a8d8d9eb4490fa144c547e5f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerInputsystemAdapter
---- !u!114 &3224151848251582093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6490208958335445775}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 622b798578b535d438c1f86184e0fd5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  inputSource: {fileID: 3238765284559147059}
-  motor: {fileID: 4020568885726553699}
-  cameraTransform: {fileID: 413093906980613970}
-  _jump: 0
-  jumpForce: 10
 --- !u!54 &3388720958398457946
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -349,7 +320,7 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &4020568885726553699
+--- !u!114 &5313774353161766288
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -358,16 +329,45 @@ MonoBehaviour:
   m_GameObject: {fileID: 6490208958335445775}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc3623dda34f2524ba8be1c8ac0d2851, type: 3}
+  m_Script: {fileID: 11500000, guid: 8315746c304e95b4fabe17f90b7b2cc3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMotor
+  m_EditorClassIdentifier: Alzound.lvlPlayer::LvlPlayer.PlayerController
+  inputSource: {fileID: 5736452361298927344}
+  motor: {fileID: 2965021713616497275}
+  cameraTransform: {fileID: 413093906980613970}
+  _jump: 0
+  jumpForce: 10
+--- !u!114 &5736452361298927344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6490208958335445775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 493058950b270c140857649c0bc2a2c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Alzound.lvlPlayer::LvlPlayer.PlayerInputsystemAdapter
+--- !u!114 &2965021713616497275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6490208958335445775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aacecdc77c2a72241b124525740742f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Alzound.lvlPlayer::LvlPlayer.PlayerMotor
   walkSpeed: 4.5
   runMultiplier: 1.8
   acceleration: 30
   deceleration: 35
   gravity: -20
   groundCheckRadius: 0.2
-  groundCheckOffset: 0.43
+  groundCheckOffset: 0.05
   groundMask:
     serializedVersion: 2
     m_Bits: 4294967295
