@@ -1,18 +1,22 @@
 using UnityEngine;
 
-public class PlayerInputContracts : MonoBehaviour
+namespace LvlPlayer
 {
-    public struct PlayerInputState
+    public class PlayerInputContracts : MonoBehaviour
     {
-        public Vector2 Move;
-        public Vector2 Look;
-        public bool Jump; 
-        public bool Interact;
-        public bool Sprint;
-    }
+        public struct PlayerInputState
+        {
+            public Vector2 Move;
+            public Vector2 Look;
+            public bool Jump;
+            public bool Interact;
+            public bool Sprint;
+        }
 
-    public interface IPlayerInput
-    {
-        PlayerInputState Read(); 
+        public interface IPlayerInput
+        {
+            PlayerInputState Read();
+        }
     }
 }
+
