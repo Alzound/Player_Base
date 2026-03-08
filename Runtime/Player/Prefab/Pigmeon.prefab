@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 413093906980613970}
   - component: {fileID: 1706292858061254539}
   - component: {fileID: 6978527177873630892}
+  - component: {fileID: 8962958698674286857}
   m_Layer: 0
   m_Name: CameraLook
   m_TagString: Untagged
@@ -61,6 +62,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 493058950b270c140857649c0bc2a2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Alzound.lvlPlayer::LvlPlayer.PlayerInputsystemAdapter
+--- !u!114 &8962958698674286857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339574712042785322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63e4e6ea81489f840a8ce2ac17a6b591, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Alzound.lvlPlayer::LvlPlayer.CinemachineBrain_Starter
 --- !u!1 &6296457867245844372
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,7 +290,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6490208958335445775}
-  m_Material: {fileID: 13400000, guid: 8824a86e379c5db4f9948538ea130a45, type: 2}
+  m_Material: {fileID: 13400000, guid: e7fbc9970a2d30d409050afaee67b818, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
