@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 990c441dbc445514c902a025aad25de4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Alzound.lvlPlayer::LvlPlayer.Camera_Controller
-  inputSource: {fileID: 0}
-  playerBody: {fileID: 0}
+  inputSource: {fileID: 1706292858061254539}
+  playerBody: {fileID: 8849017084895655066}
   lookSensitivity: 200
   pitchLimits: {x: -60, y: 75}
 --- !u!114 &6978527177873630892
