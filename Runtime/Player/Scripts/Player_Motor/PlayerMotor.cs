@@ -19,11 +19,15 @@ namespace LvlPlayer
         [SerializeField] private float maxSlopeAngle = 50f;
 
         [Header("Jump")]
-        [SerializeField] private float jumpForce = 10;
+        [SerializeField] private float jumpForce = 10f;
+        [SerializeField] private bool useAdvancedJump = false;
+        [SerializeField] private float fallMultiplier = 2.2f;
+        [SerializeField] private float lowJumpMultiplier = 2f;
 
         // Estado deseado
         private Vector3 _desiredPlanarWorld = Vector3.zero;
         private bool _wantsRun;
+        private bool _jumpHeld;
 
         // Interno
         private Rigidbody rb;
@@ -43,6 +47,8 @@ namespace LvlPlayer
         }
 
         public void SetRun(bool run) => _wantsRun = run;
+
+        public void SetJumpHeld(bool held) => _jumpHeld = held;
 
         public void AddExternalImpulse(Vector3 worldPlanarImpulse)
         {
@@ -67,7 +73,6 @@ namespace LvlPlayer
         {
             GroundCheck();
 
-            //Debug.Log("Move"); 
             // Velocidad objetivo (planar)
             float targetSpeed = walkSpeed * (_wantsRun ? runMultiplier : 1f);
             Vector3 inputPlanar = _desiredPlanarWorld;
@@ -91,12 +96,34 @@ namespace LvlPlayer
             float accel = (inputPlanar.sqrMagnitude > 1e-6f) ? acceleration : deceleration;
             planarVel = Vector3.MoveTowards(planarVel, targetPlanarVel, accel * Time.fixedDeltaTime);
 
-            // Gravedad
-            if (_isGrounded && _verticalVel < 0f)
-                _verticalVel = -2f; // “pegado” al suelo
+            ApplyGravity();
 
-            _verticalVel += gravity * Time.fixedDeltaTime;
             rb.linearVelocity = new Vector3(planarVel.x, _verticalVel, planarVel.z);
+        }
+
+        private void ApplyGravity()
+        {
+            if (_isGrounded && _verticalVel < 0f)
+            {
+                _verticalVel = -2f; // “pegado” al suelo
+                return;
+            }
+
+            float gravityMultiplier = 1f;
+
+            if (useAdvancedJump)
+            {
+                if (_verticalVel < 0f)
+                {
+                    gravityMultiplier = fallMultiplier;
+                }
+                else if (_verticalVel > 0f && !_jumpHeld)
+                {
+                    gravityMultiplier = lowJumpMultiplier;
+                }
+            }
+
+            _verticalVel += gravity * gravityMultiplier * Time.fixedDeltaTime;
         }
 
         private void GroundCheck()
@@ -121,6 +148,7 @@ namespace LvlPlayer
         public void Jump()
         {
             if (!_isGrounded) return;
+
             _verticalVel = jumpForce;
             _isGrounded = false;
         }
@@ -128,7 +156,7 @@ namespace LvlPlayer
         public Vector3 CurrentVelocity => rb != null ? rb.linearVelocity : Vector3.zero;
         public bool IsGrounded => _isGrounded;
 
-        // --- 🟡 GIZMOS DE DEPURACIÓN ---
+        // --- GIZMOS DE DEPURACIÓN ---
         private void OnDrawGizmosSelected()
         {
             if (capsule == null)
@@ -137,24 +165,18 @@ namespace LvlPlayer
             Vector3 origin = transform.position + Vector3.up * capsule.center.y;
             float castDistance = (capsule.height * 0.5f) - capsule.radius + groundCheckOffset;
 
-            // Color base (amarillo si grounded, rojo si no)
             Gizmos.color = _isGrounded ? Color.green : Color.red;
-
-            // Línea del raycast
             Gizmos.DrawLine(origin, origin + Vector3.down * castDistance);
-
-            // Esferas inicio y final
             Gizmos.DrawWireSphere(origin, groundCheckRadius);
             Gizmos.DrawWireSphere(origin + Vector3.down * castDistance, groundCheckRadius);
 
-            // Texto aproximado (solo en escena)
 #if UNITY_EDITOR
             UnityEditor.Handles.color = Color.yellow;
-            UnityEditor.Handles.Label(origin + Vector3.down * (castDistance * 0.5f),
-                $"GroundOffset: {groundCheckOffset:F2}\nGrounded: {_isGrounded}");
+            UnityEditor.Handles.Label(
+                origin + Vector3.down * (castDistance * 0.5f),
+                $"GroundOffset: {groundCheckOffset:F2}\nGrounded: {_isGrounded}\nAdvancedJump: {useAdvancedJump}"
+            );
 #endif
         }
     }
-
 }
-

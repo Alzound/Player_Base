@@ -9,6 +9,7 @@ namespace LvlPlayer
             public Vector2 Move;
             public Vector2 Look;
             public bool Jump;
+            public bool JumpHeld; 
             public bool Interact;
             public bool Sprint;
         }

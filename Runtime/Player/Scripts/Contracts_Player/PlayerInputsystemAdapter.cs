@@ -32,6 +32,7 @@ namespace LvlPlayer
             bool interact = _inputActions.Player.Interact.triggered;
             bool sprint = _inputActions.Player.Sprint.IsPressed();
             bool jump = _inputActions.Player.Jump.WasPressedThisFrame();
+            bool jumpHeld = _inputActions.Player.Jump.IsPressed(); 
             Vector2 look = _inputActions.Player.Look.ReadValue<Vector2>();
 
             return new PlayerInputContracts.PlayerInputState
@@ -40,6 +41,7 @@ namespace LvlPlayer
                 Interact = interact,
                 Look = look,
                 Jump = jump,
+                JumpHeld = jumpHeld,
                 Sprint = sprint,
             };
         }

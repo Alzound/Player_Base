@@ -16,7 +16,7 @@ namespace LvlPlayer
 
         [Header("Jump")]
         [SerializeField] private bool _jump = false;
-        [SerializeField] private float jumpForce = 10;
+        [SerializeField] private bool _jumpHeld = false; 
 
 
         private PlayerInputContracts.IPlayerInput _input;
@@ -49,6 +49,7 @@ namespace LvlPlayer
 
         private void FixedUpdate()
         {
+            motor.SetJumpHeld(_jumpHeld);
             if (_jump)
             {
                 motor.Jump();
@@ -59,6 +60,8 @@ namespace LvlPlayer
         private void Update()
         {
             var s = _input.Read();
+            motor.SetJumpHeld(s.JumpHeld);
+            _jumpHeld = s.JumpHeld;
             if (s.Jump) _jump = true;
 
             // Para pasar los valores al animator
